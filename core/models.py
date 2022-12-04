@@ -3,7 +3,7 @@ from django.conf import settings
 from typing import List
 
 
-class TestGroup(models.Model):
+class TestGroupModel(models.Model):
 	"""Группа тестов"""
 
 	title = models.CharField('Название группы', max_length=50)
@@ -17,12 +17,12 @@ class TestGroup(models.Model):
 		return self.title
 
 
-class Test(models.Model):
+class TestModel(models.Model):
 	"""Тест"""
 
 	title = models.CharField('Название теста', max_length=50)
 	description = models.TextField('Описание теста', blank=True)
-	groups = models.ManyToManyField(TestGroup, verbose_name='Принадлежность к группам', blank=True, null=True)
+	groups = models.ManyToManyField(TestGroupModel, verbose_name='Принадлежность к группам', blank=True, null=True)
 
 	class Meta:
 		verbose_name = 'Тест'
@@ -32,11 +32,11 @@ class Test(models.Model):
 		return self.title
 
 
-class Question(models.Model):
+class QuestionModel(models.Model):
 	"""Вопрос теста"""
 
 	title = models.TextField('Текст вопроса')
-	test = models.ForeignKey(Test, on_delete=models.CASCADE, verbose_name='Принадлежность к тесту')
+	test = models.ForeignKey(TestModel, on_delete=models.CASCADE, verbose_name='Принадлежность к тесту')
 	position = models.IntegerField('Позиция вопроса в тесте')
 	visibility = models.BooleanField('Видимость вопроса', default=True)
 
@@ -48,16 +48,16 @@ class Question(models.Model):
 		return self.title
 
 	def check_answer(self, answer: List[int]):
-		right_answer = self.answer_set.filter(is_right=True).values_list('id', flat=True)
+		right_answer = self.answermodel_set.filter(is_right=True).values_list('id', flat=True)
 		return sorted(right_answer) == sorted(answer)
 
 
-class Answer(models.Model):
+class AnswerModel(models.Model):
 	"""Ответ на вопрос"""
 
 	title = models.TextField('Текст ответа')
 	is_right = models.BooleanField('Правильный ответ', default=False)
-	question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Принадлежность к вопросу')
+	question = models.ForeignKey(QuestionModel, on_delete=models.CASCADE, verbose_name='Принадлежность к вопросу')
 
 	class Meta:
 		verbose_name = 'Ответ'
@@ -67,11 +67,11 @@ class Answer(models.Model):
 		return self.title
 
 
-class Testing(models.Model):
+class TestingModel(models.Model):
 	"""История прохождения тестов"""
 
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
-	test = models.ForeignKey(Test, on_delete=models.CASCADE, verbose_name='Тест')
+	test = models.ForeignKey(TestModel, on_delete=models.CASCADE, verbose_name='Тест')
 	date = models.DateTimeField('Дата прохождения', auto_now_add=True)
 	correct_answers = models.IntegerField('Количество правильных ответов')
 	wrong_answers = models.IntegerField('Количество неправильных ответов')
