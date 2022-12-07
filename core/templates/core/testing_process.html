@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block style_head %}
+	<link rel="stylesheet" href="{% static 'css/testing-process.css' %}">
+{% endblock %}
+
+{% block content_body %}
+	<div id="spinner">
+		<div class="spinner"></div>
+		<div class="spinner"></div>
+		<div class="spinner"></div>
+	</div>
+	<div class="card">
+		<div class="container">
+			<div id="process"></div>
+			<form id="result" method="post" hidden>
+				{% csrf_token %}
+				{{ form }}
+			</form>
+		</div>
+
+	</div>
+{% endblock %}
+
+
+{% block script_head %}
+	<script src="{% static 'js/TestProcess.js' %}"></script>
+	<script>document.addEventListener('DOMContentLoaded', () => TestProcess.start(`{{ test.pk }}`))</script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+
+{% block content_body %}
+	<div class="title">Результаты прохождения теста от {{ object.date|date:"DATETIME_FORMAT" }}</div>
+	<div class="correct">{{ object.correct_answers }}</div>
+	<div class="incorrect">{{ object.wrong_answers }}</div>
+	<div class="percent">{{ percent }}</div>
+	<a href="{% url 'test-list' %}">К списку тестов</a>
+{% endblock %}

@@ -1,6 +1,9 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
 from typing import List
+
+from django.db.models import QuerySet
 
 
 class TestGroupModel(models.Model):
@@ -22,7 +25,7 @@ class TestModel(models.Model):
 
 	title = models.CharField('Название теста', max_length=50)
 	description = models.TextField('Описание теста', blank=True)
-	groups = models.ManyToManyField(TestGroupModel, verbose_name='Принадлежность к группам', blank=True, null=True)
+	groups = models.ManyToManyField(TestGroupModel, verbose_name='Принадлежность к группам')
 
 	class Meta:
 		verbose_name = 'Тест'
@@ -37,7 +40,7 @@ class QuestionModel(models.Model):
 
 	title = models.TextField('Текст вопроса')
 	test = models.ForeignKey(TestModel, on_delete=models.CASCADE, verbose_name='Принадлежность к тесту')
-	position = models.IntegerField('Позиция вопроса в тесте')
+	position = models.IntegerField('Позиция вопроса в тесте', default=999)
 	visibility = models.BooleanField('Видимость вопроса', default=True)
 
 	class Meta:
@@ -47,9 +50,9 @@ class QuestionModel(models.Model):
 	def __str__(self):
 		return self.title
 
-	def check_answer(self, answer: List[int]):
-		right_answer = self.answermodel_set.filter(is_right=True).values_list('id', flat=True)
-		return sorted(right_answer) == sorted(answer)
+	def check_answer(self, answers: List[int]):
+		right_answer = list(self.answermodel_set.filter(is_right=True).values_list('id', flat=True))
+		return sorted(right_answer) == sorted(answers)
 
 
 class AnswerModel(models.Model):
@@ -73,6 +76,7 @@ class TestingModel(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
 	test = models.ForeignKey(TestModel, on_delete=models.CASCADE, verbose_name='Тест')
 	date = models.DateTimeField('Дата прохождения', auto_now_add=True)
-	correct_answers = models.IntegerField('Количество правильных ответов')
-	wrong_answers = models.IntegerField('Количество неправильных ответов')
-	is_completed = models.BooleanField('Корректно завершен')
+	correct_answers = models.IntegerField('Количество правильных ответов', default=0)
+	wrong_answers = models.IntegerField('Количество неправильных ответов', default=0)
+	is_start = models.BooleanField('Тестирование начато', default=False)
+	is_completed = models.BooleanField('Тестирование завершено', default=False)

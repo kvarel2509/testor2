@@ -1,0 +1,86 @@
+*
+{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body
+{
+	min-height: 100vh;
+	background: radial-gradient(#d76a00, #7a4000);
+}
+.nav
+{
+	position: relative;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.5);
+	z-index: 999;
+}
+.nav .brand
+{
+	position: relative;
+	font-size: 2em;
+	color: white;
+	margin: 0 15px;
+}
+.nav .name
+{
+	position: relative;
+	font-size: 1.5em;
+	color: white;
+	margin: 0 15px;
+}
+.nav .links
+{
+	position: relative;
+	flex-grow: 1;
+}
+.nav .user
+{
+	position: relative;
+	font-size: 1.5em;
+	color: white;
+	margin: 0 15px;
+}
+.nav form button
+{
+	position: relative;
+	font-size: 1em;
+	padding: 7px;
+	color: white;
+	margin: 0 15px;
+	background: linear-gradient(to top, #7a4000, #d76a00);
+	border: none;
+}
+.nav form button:hover
+{
+	background: linear-gradient(to top, #a85800, #f87b00);
+}
+.nav form button:active
+{
+	background: linear-gradient(to top, #673500, #2d1600);
+}
+.nav form button::before
+{
+	content: 'Не делайте этого! Это опасно!';
+	position: absolute;
+	top: 140%;
+	right: 15%;
+	width: 200px;
+	height: 50px;
+	border-radius: 15px;
+	padding: 10px;
+	background: #2d1600;
+	font-size: 1.3em;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.5s;
+}
+.nav form button:hover::before
+{
+	visibility: visible;
+	opacity: 1;
+}
