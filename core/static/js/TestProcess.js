@@ -64,10 +64,10 @@ class TestController {
 
 	async answerProcess(e) {
 		e.preventDefault()
-		await this.showWaiting()
-		await this.model.getQuestion(this.state).setResult(await this.checkAnswer(e.target))
-		await this.nextQuestion()
-		await this.hideWaiting()
+		this.showWaiting()
+		this.model.getQuestion(this.state).setResult(await this.checkAnswer(e.target))
+		this.nextQuestion()
+		this.hideWaiting()
 	}
 
 	async checkAnswer(form) {
@@ -174,11 +174,11 @@ class Spinner {
 	}
 
 	show() {
-		this.node.classList.add('show')
+		this.node.classList.remove('disabled')
 	}
 
 	hide() {
-		this.node.classList.remove('show')
+		this.node.classList.add('disabled')
 	}
 }
 

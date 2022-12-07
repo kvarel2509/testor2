@@ -118,7 +118,7 @@ class TestingResultView(LoginRequiredMixin, generic.DetailView):
 	def get_context_data(self, **kwargs):
 		ctx = super().get_context_data(**kwargs)
 		if self.object.correct_answers:
-			ctx['percent'] = (self.object.correct_answers + self.object.wrong_answers) / self.object.correct_answers * 100
+			ctx['percent'] = self.object.correct_answers / (self.object.correct_answers + self.object.wrong_answers) * 100
 		else:
 			ctx['percent'] = 0
 
