@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block style_head %}
+<link rel="stylesheet" href="{% static 'css/test-detail.css' %}">
+{% endblock %}
+{% block content_body %}
+	<div class="card">
+		<div class="container">
+			<div class="title">{{ object.title }}</div>
+			<div class="group-list">
+				{% for group in groups %}
+					<div class="group-item">
+						<div class="group-item__name">{{ group.title }}</div>
+						<div class="group-item__description">{{ group.description }}</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="description">{{ object.description }}</div>
+			<div class="history">
+				{% if attept_count %}
+					<span><i class="bi bi-exclamation-diamond"></i></span> Вы уже проходили этот тест. Количество попыток - {{ attept_count }}, последний раз {{ attept_last.date|date }}
+				{% endif %}
+			</div>
+			<a class="run-test" href="{% url 'test-start' pk=object.pk %}">
+				Запустить тест
+			</a>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block style_head %}
+	<link rel="stylesheet" href="{% static 'css/test-list.css' %}">
+{% endblock %}
+
+
+{% block content_body %}
+	<div class="test-list">
+		{% for test in object_list %}
+			<a
+				class="test-item"
+				href="{% url 'test-detail' pk=test.pk %}"
+			>
+				<div class="test-item__data">
+					<div class="test-item__name">{{ test.title }}</div>
+						<div class="test-item__group-list">
+							{% for group in test.groups %}
+								<div class="test-item__group-item">
+									<div class="test-item__group-item__name">{{ group.title }}</div>
+								</div>
+							{% endfor %}
+						</div>
+					<div class="test-item__desc">{{ test.description }}</div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+{% endblock %}

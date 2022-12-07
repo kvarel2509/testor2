@@ -1,0 +1,22 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Регистрация</title>
+	<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+</head>
+<body>
+<div class="container">
+	<h1 class="message">Регистрация</h1>
+	<form method="post">
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Зарегистрироваться</button>
+		<a href="{% url 'login' %}">Уже есть аккаунт</a>
+	</form>
+</div>
+</body>
+</html>

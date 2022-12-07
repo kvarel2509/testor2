@@ -1,0 +1,126 @@
+.card
+{
+	position: absolute;
+	display: flex;
+	width: 100%;
+	min-height: calc(100vh - 50px);
+	justify-content: center;
+	align-items: center;
+}
+.container
+{
+	position: relative;
+	display: grid;
+	grid-gap: 10px;
+	width: 500px;
+	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+	box-shadow: 0 0 5px black, 0 0 15px black;
+	border-radius: 15px;
+	padding: 15px;
+	margin: 10px;
+}
+.question-text
+{
+	color: white;
+	font-size: 2em;
+	padding: 10px 0;
+	border-top: 2px solid #d76a00;
+	border-bottom: 2px solid #d76a00;
+}
+.question form
+{
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+	gap: 15px
+}
+.question form label
+{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: start;
+	gap: 10px;
+	color: white;
+}
+.question form label input
+{
+	width: 25px;
+	height: 25px;
+}
+.question form button
+{
+	justify-self: center;
+	font-size: 1.2em;
+	padding: 7px;
+	text-decoration: none;
+	color: white;
+	margin: 15px 15px 0 15px;
+	background: linear-gradient(to top, #7a4000, #d76a00);
+	border: none;
+}
+.question form button:hover
+{
+	background: linear-gradient(to top, #a85800, #f87b00);
+}
+.question form button:active
+{
+	background: linear-gradient(to top, #673500, #2d1600);
+}
+#spinner
+{
+	display: none;
+}
+#spinner.show
+{
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(10px);
+}
+#spinner .spinner
+{
+	position: absolute;
+	border-radius: 50%;
+	border: 3px solid;
+}
+#spinner::before
+{
+	content: 'Загрузка...';
+	position: absolute;
+	top: 60%;
+	font-size: 2em;
+	color: #b6b6b6;
+}
+#spinner .spinner:nth-child(1)
+{
+	width: 100px;
+	height: 100px;
+	border-color: transparent;
+	border-bottom-color: #d76a00;
+	animation: anim1 1s infinite normal linear;
+}
+#spinner .spinner:nth-child(2)
+{
+	width: 80px;
+	height: 80px;
+	border-color: transparent;
+	border-left-color: #3c7aff;
+	animation: anim1 1s infinite reverse linear;
+}
+#spinner .spinner:nth-child(3)
+{
+	width: 60px;
+	height: 60px;
+	border-color: transparent;
+	border-right-color: #63d532;
+	animation: anim1 1s infinite normal linear;
+}
+@keyframes anim1 {
+	from {transform: rotate(0deg)}
+	to {transform: rotate(360deg)}
+}
