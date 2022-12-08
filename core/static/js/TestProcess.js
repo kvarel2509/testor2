@@ -1,3 +1,4 @@
+// Модель для хранения вопросов. Сохраняет и выдает по требованию экземпляры Question
 class QuestionModel {
 	questions = []
 
@@ -9,16 +10,12 @@ class QuestionModel {
 		return this.questions[ind]
 	}
 
-	getQuestionCount() {
-		return this.questions.length
-	}
-
 	getSeqAnswers() {
 		return this.questions.map(e => e.result)
 	}
 }
 
-
+// Контроллер процесса тестирования.
 class TestController {
 	state = -1
 	model = new QuestionModel()
@@ -83,9 +80,17 @@ class TestController {
 		let json = await response.json()
 		return json.result
 	}
+
+	exit(e) {
+		if (this.model.getQuestion(this.state)) {
+			e.preventDefault()
+			return e.returnValue = 'При выходе из системы попытка будет использована'
+		}
+	}
 }
 
 
+// Извлечение данных с сервера
 class Fetcher {
 	async fetch(url, options) {
 		const response = await fetch(url, options)
@@ -95,6 +100,7 @@ class Fetcher {
 }
 
 
+// Модель вопроса. Хранит в себе node вопроса и результат ответа на вопрос.
 class Question {
 	node
 	result
@@ -150,6 +156,7 @@ class Question {
 }
 
 
+// Модель формы для сохранения результатов тестирования.
 class TestResult {
 	node
 
@@ -166,6 +173,7 @@ class TestResult {
 }
 
 
+// Модель спиннера, отвечающего за отображение контента во время загрузки и обработки данных
 class Spinner {
 	node
 
@@ -183,6 +191,7 @@ class Spinner {
 }
 
 
+// Обработчик cookie. Требуется для извлечения csrf токена для отправки ajax формы post запросом
 class Cookie {
 	static getCookie(name) {
 		let cookieValue = null;
@@ -201,10 +210,12 @@ class Cookie {
 }
 
 
+// Инициализатор тестирования
 class TestProcess {
 	static testController
 
 	static start(testID) {
 		this.testController = new TestController(testID)
+		window.addEventListener('beforeunload', (e) => this.testController.exit(e))
 	}
 }

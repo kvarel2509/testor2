@@ -1,3 +1,6 @@
+from .forms import TestResultForm
+from .models import AnswerModel, TestModel, QuestionModel, TestingModel
+
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,8 +8,6 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.http import HttpResponseRedirect
 from rest_framework import views, response
-from .forms import TestResultForm
-from .models import AnswerModel, TestModel, QuestionModel, TestingModel
 
 
 class TestListView(LoginRequiredMixin, generic.TemplateView):

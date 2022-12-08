@@ -1,9 +1,16 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+
+{% block title %}
+	Тестирование
+{% endblock %}
+
+
 {% block style_head %}
 	<link rel="stylesheet" href="{% static 'css/testing-process.css' %}">
 {% endblock %}
+
 
 {% block content_body %}
 	<div id="spinner" class="disabled">

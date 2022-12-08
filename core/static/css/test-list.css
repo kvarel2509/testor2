@@ -12,9 +12,9 @@
 	height: 250px;
 	margin: 15px;
 	border-radius: 15px;
-	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+	background: var(--box-background);
 	text-decoration: none;
-	transition: 0.5s ease-in-out;
+	transition: 0.3s ease-in-out;
 }
 .test-item__data
 {
@@ -24,12 +24,12 @@
 	flex-direction: column;
 	height: auto;
 	overflow: hidden;
-	transition: 0.5s;
+	transition: 0.3s;
 }
 .test-item__name
 {
 	font-size: 2em;
-	color: #ffd6d6;
+	color: var(--white);
 }
 .test-item__group-list
 {
@@ -60,7 +60,7 @@
 {
 	margin: 2px;
 	font-size: 0.9em;
-	color: #818181;
+	color: var(--gray1);
 	height: 0;
 	visibility: hidden;
 	opacity: 0;
@@ -69,7 +69,8 @@
 }
 .test-item:hover
 {
-	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.5));
+	background: var(--box-hover-background);
+	box-shadow: var(--box-shadow);
 }
 .test-item:hover .test-item__data
 {

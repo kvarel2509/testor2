@@ -1,9 +1,35 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Результаты тестирования
+{% endblock %}
+
+
+{% block style_head %}
+	<link rel="stylesheet" href="{% static 'css/testing-result.css' %}">
+{% endblock %}
+
 
 {% block content_body %}
-	<div class="title">Результаты прохождения теста от {{ object.date|date:"DATETIME_FORMAT" }}</div>
-	<div class="correct">{{ object.correct_answers }}</div>
-	<div class="incorrect">{{ object.wrong_answers }}</div>
-	<div class="percent">{{ percent }}</div>
-	<a href="{% url 'test-list' %}">К списку тестов</a>
+	<div class="card">
+		<div class="container">
+			<h2 class="title">Результаты прохождения теста от</h2>
+			<h2 class="title">{{ object.date|date:"DATETIME_FORMAT" }}</h2>
+			<div class="correct"><span>Правильных ответов</span><span>{{ object.correct_answers }}</span></div>
+			<div class="incorrect"><span>Неправильных ответов</span><span>{{ object.wrong_answers }}</span></div>
+			<div class="percent"><span>Результат</span><span>{{ percent|floatformat }}%</span></div>
+			<div class="icon">
+				{% if percent >= 80 %}
+					<div class="positive"><i class="bi bi-patch-check"></i></div>
+					<div class="message">Тест успешно пройден!</div>
+				{% else %}
+					<div class="negative"><i class="bi bi-patch-exclamation"></i></div>
+					<div class="message">Тест не пройден!</div>
+				{% endif %}
+			</div>
+			<a href="{% url 'test-list' %}">К списку тестов</a>
+		</div>
+	</div>
 {% endblock %}

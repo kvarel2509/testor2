@@ -1,9 +1,16 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block title %}
+	{{ object.title }}
+{% endblock %}
+
+
 {% block style_head %}
 <link rel="stylesheet" href="{% static 'css/test-detail.css' %}">
 {% endblock %}
+
+
 {% block content_body %}
 	<div class="card">
 		<div class="container">

@@ -1,8 +1,8 @@
+from .models import AnswerModel, TestModel, TestGroupModel, QuestionModel
+
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
-
-from .models import AnswerModel, TestModel, TestGroupModel, QuestionModel, TestingModel
 
 
 class AnswerInlineFormValidator(BaseInlineFormSet):
@@ -29,10 +29,6 @@ class AnswerInline(admin.TabularInline):
 	formset = AnswerInlineFormValidator
 
 
-class QuestionInline(admin.TabularInline):
-	model = QuestionModel
-
-
 @admin.register(TestGroupModel)
 class TestGroupAdmin(admin.ModelAdmin):
 	fields = ('title', 'description', )
@@ -43,7 +39,6 @@ class TestGroupAdmin(admin.ModelAdmin):
 class TestAdmin(admin.ModelAdmin):
 	fields = ('title', 'description', 'groups', )
 	list_display = ('title', 'description', )
-	inlines = (QuestionInline, )
 
 
 @admin.register(QuestionModel)

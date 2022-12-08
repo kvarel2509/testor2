@@ -11,15 +11,15 @@
 	display: grid;
 	grid-gap: 10px;
 	width: 500px;
-	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-	box-shadow: 0 0 5px black, 0 0 15px black;
+	background: var(--box-background);
+	box-shadow: var(--box-shadow);
 	border-radius: 15px;
 	padding: 15px;
 	margin: 10px;
 }
 .container .title
 {
-	color: white;
+	color: var(--white);
 	font-size: 2em;
 	font-weight: bold;
 }
@@ -40,7 +40,7 @@
 	margin: 2px 4px;
 	font-size: 0.8em;
 	cursor: default;
-	box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.5), inset -2px -2px 2px rgba(0, 0, 0, 0.3), 0 0 6px black;
+	box-shadow: inset 1px 1px 3px var(--white), inset -1px -1px 3px var(--gray4);
 }
 .container .group-item:nth-child(odd)
 {
@@ -54,11 +54,11 @@
 {
 	position: absolute;
 	top: 130%;
-	color: white;
+	color: var(--white);
 	width: 200px;
 	padding: 10px;
 	text-align: center;
-	background: #2d1600;
+	background: var(--black);
 	border-radius: 5px;
 	visibility: hidden;
 	opacity: 0;
@@ -72,15 +72,15 @@
 .description
 {
 	font-size: 1em;
-	color: #b6b6b6;
+	color: var(--white);
 	text-align: justify;
 	padding: 10px 0;
-	border-bottom: 2px solid #d76a00;
-	border-top: 2px solid #d76a00;
+	border-bottom: 2px solid var(--orange-dark);
+	border-top: 2px solid var(--orange);
 }
 .history
 {
-color: red;
+	color: red;
 }
 .history span
 {
@@ -92,16 +92,16 @@ color: red;
 	font-size: 1.2em;
 	padding: 7px;
 	text-decoration: none;
-	color: white;
+	color: var(--white);
 	margin: 0 15px;
-	background: linear-gradient(to top, #7a4000, #d76a00);
+	background: var(--button-background);
 	border: none;
 }
 .run-test:hover
 {
-	background: linear-gradient(to top, #a85800, #f87b00);
+	background: var(--button-hover-background);
 }
 .run-test:active
 {
-	background: linear-gradient(to top, #673500, #2d1600);
+	background: var(--orange-dark);
 }

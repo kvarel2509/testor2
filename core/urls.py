@@ -1,7 +1,9 @@
-from django.urls import path, include
 from .views import TestListView, TestDetailView, TestingResultView, TestStartView,\
 	AnswerProcessingAPIView, TestDataAPIView, TestingProcessView, RegistrationUserView
+
+from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
+
 
 urlpatterns = [
 	path('', TestListView.as_view(), name='test-list'),

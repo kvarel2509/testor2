@@ -1,3 +1,20 @@
+:root
+{
+	--white: #cecece;
+	--gray1: #727271;
+	--gray2: #5f605d;
+	--gray3: #484848;
+	--gray4: #2f2f2f;
+	--black: #21201f;
+	--orange: #ef6817;
+	--orange-light: #e0966a;
+	--orange-dark: #a24710;
+	--box-background: linear-gradient(to top, var(--gray4), var(--gray3));
+	--box-hover-background: linear-gradient(to top, var(--black), var(--gray4));
+	--box-shadow: 0 -1px 5px var(--black), 0 0 3px var(--black), 0 5px 10px var(--black);
+	--button-background: linear-gradient(to top, var(--orange-dark), var(--orange));
+	--button-hover-background: linear-gradient(to top, var(--orange), var(--orange-light));
+}
 *
 {
 	box-sizing: border-box;
@@ -7,7 +24,7 @@
 body
 {
 	min-height: 100vh;
-	background: radial-gradient(#d76a00, #7a4000);
+	background: radial-gradient(var(--gray1), var(--gray2));
 }
 .nav
 {
@@ -16,22 +33,27 @@ body
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(0,0,0,0.5);
+	background: var(--black);
 	z-index: 999;
 }
 .nav .brand
 {
 	position: relative;
-	font-size: 2em;
-	color: white;
 	margin: 0 15px;
+}
+.nav .brand a
+{
+	font-size: 2em;
+	color: var(--white);
+	text-decoration: none;
 }
 .nav .name
 {
 	position: relative;
 	font-size: 1.5em;
-	color: white;
+	color: var(--white);
 	margin: 0 15px;
+	cursor: default;
 }
 .nav .links
 {
@@ -42,7 +64,7 @@ body
 {
 	position: relative;
 	font-size: 1.5em;
-	color: white;
+	color: var(--white);
 	margin: 0 15px;
 }
 .nav form button
@@ -50,18 +72,18 @@ body
 	position: relative;
 	font-size: 1em;
 	padding: 7px;
-	color: white;
+	color: var(--white);
 	margin: 0 15px;
-	background: linear-gradient(to top, #7a4000, #d76a00);
+	background: var(--button-background);
 	border: none;
 }
 .nav form button:hover
 {
-	background: linear-gradient(to top, #a85800, #f87b00);
+	background: var(--button-hover-background);
 }
 .nav form button:active
 {
-	background: linear-gradient(to top, #673500, #2d1600);
+	background: var(--orange-dark);
 }
 .nav form button::before
 {
@@ -73,7 +95,7 @@ body
 	height: 50px;
 	border-radius: 15px;
 	padding: 10px;
-	background: #2d1600;
+	background: var(--black);
 	font-size: 1.3em;
 	visibility: hidden;
 	opacity: 0;

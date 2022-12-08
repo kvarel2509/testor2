@@ -5,7 +5,6 @@
 	width: 100%;
 	min-height: calc(100vh - 50px);
 	justify-content: center;
-	align-items: center;
 }
 .question
 {
@@ -13,19 +12,19 @@
 	display: grid;
 	grid-gap: 10px;
 	width: 500px;
-	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-	box-shadow: 0 0 5px black, 0 0 15px black;
+	background: var(--box-background);
+	box-shadow: var(--box-shadow);
 	border-radius: 15px;
 	padding: 15px;
 	margin: 10px;
 }
 .question-text
 {
-	color: white;
+	color: var(--white);
 	font-size: 2em;
 	padding: 10px 0;
-	border-top: 2px solid #d76a00;
-	border-bottom: 2px solid #d76a00;
+	border-top: 2px solid var(--orange);
+	border-bottom: 2px solid var(--orange-dark);
 }
 .question form
 {
@@ -40,7 +39,7 @@
 	flex-direction: row-reverse;
 	justify-content: start;
 	gap: 10px;
-	color: white;
+	color: var(--white);
 }
 .question form label input
 {
@@ -53,18 +52,18 @@
 	font-size: 1.2em;
 	padding: 7px;
 	text-decoration: none;
-	color: white;
+	color: var(--white);
 	margin: 15px 15px 0 15px;
-	background: linear-gradient(to top, #7a4000, #d76a00);
+	background: var(--button-background);
 	border: none;
 }
 .question form button:hover
 {
-	background: linear-gradient(to top, #a85800, #f87b00);
+	background: var(--button-hover-background);
 }
 .question form button:active
 {
-	background: linear-gradient(to top, #673500, #2d1600);
+	background: var(--orange-dark);
 }
 #spinner
 {
@@ -77,7 +76,7 @@
 	width: 100%;
 	height: calc(100% - 50px);
 	backdrop-filter: blur(20px);
-    z-index: 999;
+	z-index: 999;
 }
 #spinner .spinner
 {
@@ -91,7 +90,7 @@
 	position: absolute;
 	top: 55%;
 	font-size: 2em;
-	color: #b6b6b6;
+	color: var(--white);
 }
 #spinner .spinner:nth-child(1)
 {

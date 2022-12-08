@@ -1,9 +1,7 @@
-from django.core.exceptions import ValidationError
-from django.db import models
-from django.conf import settings
 from typing import List
 
-from django.db.models import QuerySet
+from django.db import models
+from django.conf import settings
 
 
 class TestGroupModel(models.Model):

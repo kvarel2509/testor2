@@ -1,6 +1,6 @@
-from django import forms
-
 from core.models import TestingModel
+
+from django import forms
 
 
 class TestResultForm(forms.ModelForm):
